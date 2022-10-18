@@ -49,6 +49,9 @@ RUN apk add -U --no-cache ca-certificates tzdata git \
 USER $USER
 WORKDIR /data
 
+COPY --from=build-image --chown=$USER:$GROUP /go/src/github.com/gabrie30/ghorg/ghorg/sample-conf.yaml /config/conf.yaml
+COPY --from=build-image --chown=$USER:$GROUP /go/src/github.com/gabrie30/ghorg/ghorg/sample-reclone.yaml /config/reclone.yaml
+
 # Copy compiled binary
 COPY --from=build-image --chown=$USER:$GROUP /go/src/github.com/gabrie30/ghorg/ghorg /usr/local/bin
 
