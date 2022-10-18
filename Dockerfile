@@ -5,15 +5,9 @@ ARG USER=coolio \
 
 # Build image
 FROM --platform=$BUILDPLATFORM golang:1.18 AS build-image
-# ARG BUILDPLATFORM
-# ARG TARGETPLATFORM
-# ARG TARGETOS
-# ARG TARGETARCH
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0
-    # TARGET_OS=${TARGETOS} \
-    # TARGET_ARCH=${TARGETARCH}
 
 WORKDIR /go/src/github.com/gabrie30/ghorg
 
@@ -49,6 +43,7 @@ RUN apk add -U --no-cache ca-certificates tzdata git \
 USER $USER
 WORKDIR /data
 
+# Sample config
 COPY --from=build-image --chown=$USER:$GROUP /go/src/github.com/gabrie30/ghorg/sample-conf.yaml /config/conf.yaml
 COPY --from=build-image --chown=$USER:$GROUP /go/src/github.com/gabrie30/ghorg/sample-reclone.yaml /config/reclone.yaml
 
