@@ -48,7 +48,7 @@ alias ghorg="docker run --rm -v $HOME/.config/ghorg:/config -v $HOME/repositorie
 
 ## Configuration
 
-By default, ghorg expects configuration file to be at `$HOME/.config/ghorg/conf.yaml`. However, this container sets a few environment variables by default, so the location of this file should instead be `/config/conf.yaml` inside the container. You can override this as you please:
+By default, ghorg expects configuration file to be at `$HOME/.config/ghorg/conf.yaml`. However, this container sets a few environment variables by default, so the location of this file should instead be `/config/conf.yaml` inside the container. You can override these as you please:
 
 | Variable | Container default |
 | :----: | --- |
@@ -58,7 +58,7 @@ By default, ghorg expects configuration file to be at `$HOME/.config/ghorg/conf.
 
 You may set [any other environment variable](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) that ghorg expects or edit the configuration file.
 
-Sample [`config.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) and [`reclone.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-reclone.yaml) files are added to `/config` folder, but do not interfere in the normal operation, unless they are changed.
+Sample [`config.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) and [`reclone.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-reclone.yaml) files are added to `/config` folder, but do not interfere with normal operation, unless they are changed.
 
 For more information, please consult [the documentation](https://github.com/gabrie30/ghorg#readme) on [ghorg's repository](https://github.com/gabrie30/ghorg).
 
