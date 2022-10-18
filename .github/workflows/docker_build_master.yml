@@ -36,9 +36,9 @@ jobs:
         uses: actions/checkout@v3
       - name: Clone gabrie30/ghorg
         run: |
-          echo "Building image for branch: master
+          echo "Building image for branch master
           chmod u+x ./scripts/clone.sh
-          ./scripts/clone.sh master
+          ./scripts/clone.sh
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
