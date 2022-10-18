@@ -34,15 +34,21 @@ docker run --rm afonsoc12/ghorg clone kubernetes --token=<API_TOKEN>
 ```shell
 docker run --rm \
         -e GHORG_GITHUB_TOKEN=<API_TOKEN> \
-        -v $HOME/.config/ghorg:/config `#optional: only if using config file` \
+        -v $HOME/.config/ghorg:/config `#optional` \
         -v $HOME/repositories:/data \
         afonsoc12/ghorg:latest \
         clone kubernetes
 ```
 
+A shell alias might make this more practical:
+
+```shell
+alias ghorg="docker run --rm -v $HOME/.config/ghorg:/config -v $HOME/repositories:/data afonsoc12/ghorg:latest"
+```
+
 ## Configuration
 
-By default, ghorg expects configuration to be at `$HOME/.config/ghorg/conf.yaml`. However, this container sets a few environment variables by default, so the location of this file should be `/config/conf.yaml` inside the container. You can override this as you please:
+By default, ghorg expects configuration file to be at `$HOME/.config/ghorg/conf.yaml`. However, this container sets a few environment variables by default, so the location of this file should instead be `/config/conf.yaml` inside the container. You can override this as you please:
 
 | Variable | Container default |
 | :----: | --- |
@@ -52,9 +58,9 @@ By default, ghorg expects configuration to be at `$HOME/.config/ghorg/conf.yaml`
 
 You may set [any other environment variable](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) that ghorg expects or edit the configuration file.
 
-The sample [`config.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) and [`reclone.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-reclone.yaml) files are added to `/config` folder, but do not interfere, unless you edit them.
+Sample [`config.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-conf.yaml) and [`reclone.yaml`](https://github.com/gabrie30/ghorg/blob/master/sample-reclone.yaml) files are added to `/config` folder, but do not interfere in the normal operation, unless they are changed.
 
-For more information, please consult [the official documentation](https://github.com/gabrie30/ghorg#readme) on [ghorg's repository](https://github.com/gabrie30/ghorg).
+For more information, please consult [the documentation](https://github.com/gabrie30/ghorg#readme) on [ghorg's repository](https://github.com/gabrie30/ghorg).
 
 
 ## Credits
