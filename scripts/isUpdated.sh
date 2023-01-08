@@ -1,7 +1,13 @@
 #!/bin/bash
 
+set -e
+
 retrieve_latest_release () {
     repo=$1
+    echo $(curl -s \
+                -H "Accept: application/json" \
+                https://api.github.com/repos/$repo/releases)
+
     local version=$(curl -s \
                 -H "Accept: application/json" \
                 https://api.github.com/repos/$repo/releases | \
