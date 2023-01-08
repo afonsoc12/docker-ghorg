@@ -4,9 +4,6 @@ set -e
 
 retrieve_latest_release () {
     repo=$1
-    echo $(curl -s \
-                -H "Accept: application/json" \
-                https://api.github.com/repos/$repo/releases)
 
     local version=$(curl -s \
                 -H "Accept: application/json" \
@@ -18,7 +15,9 @@ retrieve_latest_release () {
     echo $version
 }
 
+
 ext_tag=$(retrieve_latest_release 'gabrie30/ghorg')
+ext_tag_len=$(echo $ext_tag |awk '{print length}')
 
 echo "**** External release is $ext_tag"
 
@@ -29,14 +28,16 @@ echo "**** Last release is $last_tag"
 if [ -z "${ext_tag}" ] || [ "${ext_tag}" == "null" ]; then
     echo "**** Can't retrieve external release, exiting... ****"
     exit 1
-elif [ "$ext_tag" == "$last_tag" ]; then
+elif [ "$ext_tag" == "$last_tag" ] && [ "$ext_tag_len" -lt 15 ]; then
     echo "**** Current release is still up-to-date ****"
     echo "    - ghorg version:  $ext_tag"
     echo "    - Last release version: $last_tag"
-else
+elif [ "$ext_tag_len" -lt 15 ]; then
     version_file="DOCKER_VERSION.txt"
     echo "**** Triggering new release by creating the file: $version_file ****"
     echo "    Old version: $last_tag"
     echo "    NEW version: $ext_tag"
     echo $ext_tag > $version_file
+else
+    echo "**** Other error occurred ****"
 fi
