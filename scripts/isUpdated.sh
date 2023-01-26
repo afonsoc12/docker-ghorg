@@ -15,6 +15,21 @@ retrieve_latest_release () {
     echo $version
 }
 
+echo "********** DEBUG **********"
+repo='gabrie30/ghorg'
+echo $(curl -s \
+                -H "Accept: application/json" \
+                https://api.github.com/repos/$repo/releases | \
+                    jq -r '.[] | select(.prerelease==false and .draft==false) | .tag_name')
+echo "---------------------------"
+echo $(curl -s \
+                -H "Accept: application/json" \
+                https://api.github.com/repos/$repo/releases | \
+                    jq -r '.[] | select(.prerelease==false and .draft==false) | .tag_name' | \
+                    grep -Po '(\d+\.)?(\d+\.)?(\*|\d+)$' | \
+                    sort -n -r | \
+                    head -n1)
+echo "***************************"
 
 ext_tag=$(retrieve_latest_release 'gabrie30/ghorg')
 ext_tag_len=$(echo $ext_tag |awk '{print length}')
