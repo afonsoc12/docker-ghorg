@@ -7,6 +7,9 @@
 [![Github Fork](https://img.shields.io/github/forks/afonsoc12/docker-ghorg?logo=github)](https://github.com/afonsoc12/docker-ghorg)
 [![Github Release](https://img.shields.io/github/v/release/afonsoc12/docker-ghorg?logo=github)](https://github.com/afonsoc12/docker-ghorg/releases)
 
+> Note: This project is now archived as I have migrated this to the original repo.
+> For more information, please check [this issue](https://github.com/gabrie30/ghorg/issues/351).
+
 [ghorg](https://github.com/gabrie30/ghorg) is a CLI tool designed to *"quickly clone an entire org/users repositories into one directory"*.
 
 This repository automatically builds and pushes docker images for the latest releases of [gabrie30/ghorg](https://github.com/gabrie30/ghorg). It is based on the lightweight [alpine](https://hub.docker.com/_/alpine) image, built for `linux/amd64`, `linux/arm64` and `linux/arm/v7` architectures.
